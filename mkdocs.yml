@@ -1,0 +1,9 @@
+site_name: SpeedCode Snippets
+theme:
+    name: readthedocs
+    highlightjs: true
+    hljs_languages:
+        - yaml
+        - cs
+        - js
+        - cpp
