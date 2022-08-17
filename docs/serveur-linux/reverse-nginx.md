@@ -1,5 +1,9 @@
 # Comment faire un reverse proxy Nginx
 
+Un serveur proxy est un serveur intermédiaire ou intermédiaire qui transfère les demandes de contenu de plusieurs clients vers différents serveurs sur Internet. Un serveur proxy inverse (reverse proxy) est un type de serveur proxy qui se trouve généralement derrière le pare-feu dans un réseau privé et dirige les demandes des clients vers le serveur principal approprié. Un proxy inverse fournit un niveau supplémentaire d'abstraction et de contrôle pour assurer la fluidité du trafic réseau entre les clients et les serveurs.
+
+Dans ce tutoriel, nous allons voir comment mettre en place un reverse proxy sous Linux avec Nginx.
+
 ## Etape 1 : installer Nginx
 
 ### Debian, Ubuntu
