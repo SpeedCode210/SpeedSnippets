@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Génération de SHA-256 - SpeedCode Snippets</title>
+    <title>Installer XFCE sur un serveur Almalinux - SpeedCode Snippets</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "G\u00e9n\u00e9ration de SHA-256";
-        var mkdocs_page_input_path = "c#/sha256.md";
+        var mkdocs_page_name = "Installer XFCE sur un serveur Almalinux";
+        var mkdocs_page_input_path = "serveur-linux/xfce-serveur-almalinux.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -50,18 +50,12 @@
                 </li>
               </ul>
               <p class="caption"><span class="caption-text">C#</span></p>
-              <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../embedded-resource-read/">Lecture d'une EmbeddedResource</a>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../c%23/embedded-resource-read/">Lecture d'une EmbeddedResource</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../ptero-egg-dotnet-6/">Egg Pterodactyl dotnet 6</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../c%23/ptero-egg-dotnet-6/">Egg Pterodactyl dotnet 6</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Génération de SHA-256</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#fonction">Fonction</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a>
-    </li>
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../c%23/sha256/">Génération de SHA-256</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Linux</span></p>
@@ -74,10 +68,24 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Serveur linux</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../serveur-linux/reverse-nginx/">Comment faire un reverse proxy Nginx</a>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../reverse-nginx/">Comment faire un reverse proxy Nginx</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../serveur-linux/xfce-serveur-almalinux/">Installer XFCE sur un serveur Almalinux</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Installer XFCE sur un serveur Almalinux</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#installation-du-repo-epel">Installation du repo EPEL</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation-de-xfce">Installation de XFCE</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation-de-xrdp">Installation de XRDP</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ajout-des-regles-de-pare-feu">Ajout des règles de Pare-feu</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#redemarrage-du-serveur">Redémarrage du serveur</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#connexion-a-distance">Connexion à distance</a>
+    </li>
+    </ul>
                   </li>
               </ul>
       </div>
@@ -94,8 +102,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>C# &raquo;</li>
-      <li>Génération de SHA-256</li>
+          <li>Serveur linux &raquo;</li>
+      <li>Installer XFCE sur un serveur Almalinux</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -104,35 +112,35 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="generation-de-sha-256">Génération de SHA-256</h1>
-<p>Voici une simple fonction en C# permettant de générer le hash SHA-256 d'une <code>string</code> :</p>
-<h2 id="fonction">Fonction</h2>
-<pre><code class="language-cs">using System.Security.Cryptography;
-using System.Text;
-
-...
-
-public static string ComputeSha256Hash(string rawData)
-{
-    using var sha256Hash = SHA256.Create();
-    var bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
-    var builder = new StringBuilder();
-    foreach (var t in bytes)
-        builder.Append(t.ToString(&quot;x2&quot;));
-    return builder.ToString();
-}
+                <h1 id="installer-xfce-sur-un-serveur-almalinux">Installer XFCE sur un serveur Almalinux</h1>
+<p>Dans ce tutoriel, nous allons voir comment installer XFCE sur Almalinux (et dérivées de RHEL) et le serveur RDP pour y accéder à distance.</p>
+<h2 id="installation-du-repo-epel">Installation du repo EPEL</h2>
+<pre><code>dnf install epel-release
 </code></pre>
-<h2 id="usage">Usage</h2>
-<pre><code class="language-cs">string hash = ComputeSha256Hash(&quot;SpeedCode&quot;);
-Console.WriteLine(hash);
-// Retourne : 99a6270b3f5afd8183c298799e282aca861d9a1641f23f4087d6ec0804580311
+<h2 id="installation-de-xfce">Installation de XFCE</h2>
+<pre><code>dnf groupinstall Xfce
+dnf install google-noto-{mono-fonts,sans-fonts,serif-fonts} xdg-user-dirs
 </code></pre>
+<h2 id="installation-de-xrdp">Installation de XRDP</h2>
+<pre><code>dnf install xrdp xrdp-selinux xorgxrdp
+echo &quot;startxfce4&quot; &gt; ~/.Xclients
+chmod +x ~/.Xclients
+systemctl enable --now xrdp
+</code></pre>
+<h2 id="ajout-des-regles-de-pare-feu">Ajout des règles de Pare-feu</h2>
+<pre><code>firewall-cmd --permanent --add-port=3389/tcp
+firewall-cmd --reload
+</code></pre>
+<h2 id="redemarrage-du-serveur">Redémarrage du serveur</h2>
+<pre><code>systemctl reboot
+</code></pre>
+<h2 id="connexion-a-distance">Connexion à distance</h2>
+<p>Et voilà, maintenant il ne vous reste qu'à vous connecter à votre serveur avec votre client RDP préféré !</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../ptero-egg-dotnet-6/" class="btn btn-neutral float-left" title="Egg Pterodactyl dotnet 6"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../../linux/creer-rpm/" class="btn btn-neutral float-right" title="Comment créer un paquet RPM">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../reverse-nginx/" class="btn btn-neutral float-left" title="Comment faire un reverse proxy Nginx"><span class="icon icon-circle-arrow-left"></span> Previous</a>
     </div>
 
   <hr/>
@@ -155,10 +163,8 @@ Console.WriteLine(hash);
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../ptero-egg-dotnet-6/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../reverse-nginx/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
-    
-      <span><a href="../../linux/creer-rpm/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
