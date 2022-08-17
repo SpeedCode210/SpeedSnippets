@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Lecture d'une EmbeddedResource - SpeedCode Snippets</title>
+    <title>Installation de l'imprimante Canon LBP3010 sous Linux - SpeedCode Snippets</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Lecture d\u0027une EmbeddedResource";
-        var mkdocs_page_input_path = "c#/embedded-resource-read.md";
+        var mkdocs_page_name = "Installation de l\u0027imprimante Canon LBP3010 sous Linux";
+        var mkdocs_page_input_path = "linux/installation-canon-lbp3010.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -50,27 +50,33 @@
                 </li>
               </ul>
               <p class="caption"><span class="caption-text">C#</span></p>
-              <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Lecture d'une EmbeddedResource</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#fonction">Fonction</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#exemple">Exemple</a>
-    </li>
-    </ul>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../c%23/embedded-resource-read/">Lecture d'une EmbeddedResource</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../ptero-egg-dotnet-6/">Egg Pterodactyl dotnet 6</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../c%23/ptero-egg-dotnet-6/">Egg Pterodactyl dotnet 6</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../sha256/">Génération de SHA-256</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../c%23/sha256/">Génération de SHA-256</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Linux</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../linux/creer-rpm/">Comment créer un paquet RPM</a>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../creer-rpm/">Comment créer un paquet RPM</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../linux/installation-canon-lbp3010/">Installation de l'imprimante Canon LBP3010 sous Linux</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Installation de l'imprimante Canon LBP3010 sous Linux</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#telechargement-du-pilote">Téléchargement du pilote</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#redemarrage-de-cups">Redémarrage de CUPS</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#selection-du-ppd-correspendant-a-limprimante">Sélection du PPD correspendant à l'imprimante</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation-de-limprimante">Installation de l'imprimante</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#demarrage-automatique-du-demon-ccpd">Démarrage automatique du démon ccpd</a>
+    </li>
+    </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../linux/postinstall-fedora/">Post-installation de Fedora Workstation</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../postinstall-fedora/">Post-installation de Fedora Workstation</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Serveur linux</span></p>
@@ -92,8 +98,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>C# &raquo;</li>
-      <li>Lecture d'une EmbeddedResource</li>
+          <li>Linux &raquo;</li>
+      <li>Installation de l'imprimante Canon LBP3010 sous Linux</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -102,43 +108,46 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="lecture-dune-embeddedresource">Lecture d'une EmbeddedResource</h1>
-<p>Voici une fonction permettant de lire simplement un fichier texte en EmbeddedResource en C#</p>
-<h2 id="fonction">Fonction</h2>
-<pre><code class="language-cs">using System.Reflection;
-
-...
-
-static string ReadEmbeddedReource(string res){
-    var asm = Assembly.GetExecutingAssembly();
-    using var stream = asm.GetManifestResourceStream(asm.GetName().Name+&quot;.&quot;+res.Replace('/', '.'))!;
-    using var reader = new StreamReader(stream);
-    string result = reader.ReadToEnd();
-    return result;
-}
+                <h1 id="installation-de-limprimante-canon-lbp3010-sous-linux">Installation de l'imprimante Canon LBP3010 sous Linux</h1>
+<h2 id="telechargement-du-pilote">Téléchargement du pilote</h2>
+<p>Installez les RPM ou DEB (Selon la distribution et l'architecture) des paquets <code>cndrvcups-common</code> et <code>cndrvcups-capt</code> depuis le tar.gz téléchargeable à l'adresse suivante : <a href="https://sg.canon/en/support/0100459601">https://sg.canon/en/support/0100459601</a></p>
+<h2 id="redemarrage-de-cups">Redémarrage de CUPS</h2>
+<p>Pour que l'installation du pilote soit prise en compte par CUPS, executez la commande suivante :</p>
+<pre><code>sudo systemctl restart cups
 </code></pre>
-<h2 id="exemple">Exemple</h2>
-<p>Sur un projet ayant la structure suivante avec File1.txt et File2.txt en EmbeddedResource :</p>
-<pre><code>TestProject.csproj
- |
- |- File1.txt
- |
- |- Folder1
- |  |
- |  |- File2.txt
- |
- |- Program.cs
+<h2 id="selection-du-ppd-correspendant-a-limprimante">Sélection du PPD correspendant à l'imprimante</h2>
+<p>Vous pouvez voir la liste des fichiers PPD via la commande suivante :</p>
+<pre><code>ls /usr/share/cups/model/ | grep CNCUPS
 </code></pre>
-<p>Pour accéder au contenu des deux fichiers, rien de plus simple :</p>
-<pre><code class="language-cs">string file1 = ReadEmbeddedReource(&quot;File1.txt&quot;);
-string file2 = ReadEmbeddedReource(&quot;Folder1/File2.txt&quot;);
+<p>Dans le cas de la LBP3010, il s'agit de <code>CNCUPSLBP3050CAPTK.ppd</code></p>
+<h2 id="installation-de-limprimante">Installation de l'imprimante</h2>
+<p>Branchez votre imprimante en USB, puis exécutez les commandes suivantes :
+<strong>NOTE :</strong> Remplacez <code>/dev/usb/lp0</code> par l'emplacement du fichier du périphérique si nécessaire, vous pouvez voir la liste des périphériques via la commande <code>ls -l /dev/usb</code></p>
+<pre><code>sudo /usr/sbin/lpadmin -p LBP3010 -m CNCUPSLBP3050CAPTK.ppd -v ccp://localhost:59787 -E
+sudo /usr/sbin/ccpdadmin -p LBP3010 -o /dev/usb/lp0
+sudo service ccpd restart
+</code></pre>
+<p>Vous pouvez voir le statut su démon ccpd via la commmande suivante : </p>
+<pre><code>sudo service ccpd status
+# Exemple : 
+# /usr/sbin/ccpd: 81161 81151
+</code></pre>
+<p>Et pour vérifier l'installation de l'imprimante :</p>
+<pre><code>sudo ccpdadmin
+</code></pre>
+<p>Et pour vérifier l'état de l'imprimante :</p>
+<pre><code>captstatusui -P LBP3010
+</code></pre>
+<h2 id="demarrage-automatique-du-demon-ccpd">Démarrage automatique du démon ccpd</h2>
+<p>Ajoutez simplement la ligne suivante à cron (commande : <code>export VISUAL=nano;sudo -E crontab -e</code>)</p>
+<pre><code>@reboot service ccpd start
 </code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../.." class="btn btn-neutral float-left" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../ptero-egg-dotnet-6/" class="btn btn-neutral float-right" title="Egg Pterodactyl dotnet 6">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../creer-rpm/" class="btn btn-neutral float-left" title="Comment créer un paquet RPM"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../postinstall-fedora/" class="btn btn-neutral float-right" title="Post-installation de Fedora Workstation">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -161,10 +170,10 @@ string file2 = ReadEmbeddedReource(&quot;Folder1/File2.txt&quot;);
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../.." style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../creer-rpm/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../ptero-egg-dotnet-6/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../postinstall-fedora/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
