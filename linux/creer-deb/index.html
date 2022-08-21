@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Installation de l'imprimante Canon LBP3010 sous Linux - SpeedCode Snippets</title>
+    <title>Comment créer un paquet DEB - SpeedCode Snippets</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Installation de l\u0027imprimante Canon LBP3010 sous Linux";
-        var mkdocs_page_input_path = "linux/installation-canon-lbp3010.md";
+        var mkdocs_page_name = "Comment cr\u00e9er un paquet DEB";
+        var mkdocs_page_input_path = "linux/creer-deb.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -60,23 +60,31 @@
               </ul>
               <p class="caption"><span class="caption-text">Linux</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../creer-deb/">Comment créer un paquet DEB</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Comment créer un paquet DEB</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#installation-des-outils-necessaires">Installation des outils nécessaires</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#sous-debian-et-derivees">Sous Debian et dérivées</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sous-fedora-et-derivees">Sous Fedora et dérivées</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mise-en-place-de-larborescence-de-construction">Mise en place de l'arborescence de construction</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#copie-des-fichiers">Copie des fichiers</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#creation-du-fichier-control">Création du fichier control</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ajout-dun-script-post-installation-facultatif">Ajout d'un script post-installation (Facultatif)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#construction-du-paquet">Construction du paquet</a>
+    </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../creer-rpm/">Comment créer un paquet RPM</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Installation de l'imprimante Canon LBP3010 sous Linux</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#telechargement-du-pilote">Téléchargement du pilote</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#redemarrage-de-cups">Redémarrage de CUPS</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#selection-du-ppd-correspendant-a-limprimante">Sélection du PPD correspendant à l'imprimante</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#installation-de-limprimante">Installation de l'imprimante</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#demarrage-automatique-du-demon-ccpd">Démarrage automatique du démon ccpd</a>
-    </li>
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../installation-canon-lbp3010/">Installation de l'imprimante Canon LBP3010 sous Linux</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../postinstall-fedora/">Post-installation de Fedora Workstation</a>
                   </li>
@@ -103,7 +111,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
           <li>Linux &raquo;</li>
-      <li>Installation de l'imprimante Canon LBP3010 sous Linux</li>
+      <li>Comment créer un paquet DEB</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -112,46 +120,49 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="installation-de-limprimante-canon-lbp3010-sous-linux">Installation de l'imprimante Canon LBP3010 sous Linux</h1>
-<h2 id="telechargement-du-pilote">Téléchargement du pilote</h2>
-<p>Installez les RPM ou DEB (Selon la distribution et l'architecture) des paquets <code>cndrvcups-common</code> et <code>cndrvcups-capt</code> depuis le tar.gz téléchargeable à l'adresse suivante : <a href="https://sg.canon/en/support/0100459601">https://sg.canon/en/support/0100459601</a></p>
-<h2 id="redemarrage-de-cups">Redémarrage de CUPS</h2>
-<p>Pour que l'installation du pilote soit prise en compte par CUPS, executez la commande suivante :</p>
-<pre><code>sudo systemctl restart cups
+                <h1 id="comment-creer-un-paquet-deb">Comment créer un paquet DEB</h1>
+<p>DEB est le format de fichier des paquets logiciels de la distribution Debian GNU/Linux. Presque toutes les distributions basées sur Debian telles que Ubuntu et Linux Mint utilisent aussi ce format.</p>
+<p>Dans ce tutoriel, nous allons voir comment créer un paquet DEB.</p>
+<h2 id="installation-des-outils-necessaires">Installation des outils nécessaires</h2>
+<h3 id="sous-debian-et-derivees">Sous Debian et dérivées</h3>
+<pre><code>sudo apt-get install fakeroot
 </code></pre>
-<h2 id="selection-du-ppd-correspendant-a-limprimante">Sélection du PPD correspendant à l'imprimante</h2>
-<p>Vous pouvez voir la liste des fichiers PPD via la commande suivante :</p>
-<pre><code>ls /usr/share/cups/model/ | grep CNCUPS
+<h3 id="sous-fedora-et-derivees">Sous Fedora et dérivées</h3>
+<pre><code>sudo dnf install dpkg fakeroot
 </code></pre>
-<p>Dans le cas de la LBP3010, il s'agit de <code>CNCUPSLBP3050CAPTK.ppd</code></p>
-<h2 id="installation-de-limprimante">Installation de l'imprimante</h2>
-<p>Branchez votre imprimante en USB, puis exécutez les commandes suivantes :
-<strong>NOTE :</strong> Remplacez <code>/dev/usb/lp0</code> par l'emplacement du fichier du périphérique si nécessaire, vous pouvez voir la liste des périphériques via la commande <code>ls -l /dev/usb</code></p>
-<pre><code>sudo /usr/sbin/lpadmin -p LBP3010 -m CNCUPSLBP3050CAPTK.ppd -v ccp://localhost:59787 -E
-sudo /usr/sbin/ccpdadmin -p LBP3010 -o /dev/usb/lp0
-sudo service ccpd restart
+<h2 id="mise-en-place-de-larborescence-de-construction">Mise en place de l'arborescence de construction</h2>
+<pre><code>mkdir -p &lt;package_name&gt;/DEBIAN
+mkdir -p &lt;package_name&gt;/usr/bin
 </code></pre>
-<p>Vous pouvez voir le statut su démon ccpd via la commmande suivante : </p>
-<pre><code>sudo service ccpd status
-# Exemple : 
-# /usr/sbin/ccpd: 81161 81151
+<h2 id="copie-des-fichiers">Copie des fichiers</h2>
+<p>Mettez les binaires de votre paquet dans le dossier <code>&lt;package_name&gt;/usr/bin</code> (ou autre si nécessaire, selon l'emplacement ou ils seront installés)</p>
+<h2 id="creation-du-fichier-control">Création du fichier control</h2>
+<p><code>&lt;package_name&gt;/DEBIAN/control</code></p>
+<pre><code>Package: &lt;package_name&gt;
+Version: 1.0
+Maintainer: SpeedCode
+Architecture: all
+Description: package description 
 </code></pre>
-<p>Et pour vérifier l'installation de l'imprimante :</p>
-<pre><code>sudo ccpdadmin
+<p>Pour plus d'options sur le fichier control : <a href="http://www.debian.org/doc/debian-policy/ch-controlfields.html#s-binarycontrolfiles">http://www.debian.org/doc/debian-policy/ch-controlfields.html#s-binarycontrolfiles</a> </p>
+<h2 id="ajout-dun-script-post-installation-facultatif">Ajout d'un script post-installation (Facultatif)</h2>
+<p><code>&lt;package_name&gt;/DEBIAN/postinst</code> (Assurez-vous qu'il est exécutable)</p>
+<pre><code>#!/usr/bin/bash
+# Mettez vos commandes à exécuter
 </code></pre>
-<p>Et pour vérifier l'état de l'imprimante :</p>
-<pre><code>captstatusui -P LBP3010
+<h2 id="construction-du-paquet">Construction du paquet</h2>
+<pre><code>cd &lt;package_name&gt;/..
+dpkg-deb --build &lt;package_name&gt;
 </code></pre>
-<h2 id="demarrage-automatique-du-demon-ccpd">Démarrage automatique du démon ccpd</h2>
-<p>Ajoutez simplement la ligne suivante à cron (commande : <code>export VISUAL=nano;sudo -E crontab -e</code>)</p>
-<pre><code>@reboot service ccpd start
+<p>La commande va créer le fichier <package_name>.deb, pour l'installer, il suffit d'exécuter la commande suivante :</p>
+<pre><code>dpkg -i &lt;package_name&gt;.deb
 </code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../creer-rpm/" class="btn btn-neutral float-left" title="Comment créer un paquet RPM"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../postinstall-fedora/" class="btn btn-neutral float-right" title="Post-installation de Fedora Workstation">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../c%23/sha256/" class="btn btn-neutral float-left" title="Génération de SHA-256"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../creer-rpm/" class="btn btn-neutral float-right" title="Comment créer un paquet RPM">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -174,10 +185,10 @@ sudo service ccpd restart
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../creer-rpm/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../../c%23/sha256/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../postinstall-fedora/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../creer-rpm/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
