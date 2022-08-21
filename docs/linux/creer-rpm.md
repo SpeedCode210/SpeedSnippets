@@ -36,7 +36,7 @@ rpmbuild
 
 ## Préparation de l'archive des sources
 
-Dans cet exemple, nous allons le faire pour un programme `test-app` en version `1.0`, créez le dossier `test-app-1.0` puis mettez-y les binaires de votre applications et créez l'archiuve depuis le dossier parent avec la commande suivante :
+Dans cet exemple, nous allons le faire pour un programme `test-app` en version `1.0`, créez le dossier `test-app-1.0` puis mettez-y les binaires de votre applications et créez l'archive depuis le dossier parent avec la commande suivante :
 
 ```
 tar -czvf test-app-1.0.tar.gz test-app-1.0
