@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Comment créer un paquet DEB - SpeedCode Snippets</title>
+    <title>Commandes de base DNF - SpeedCode Snippets</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Comment cr\u00e9er un paquet DEB";
-        var mkdocs_page_input_path = "linux/creer-deb.md";
+        var mkdocs_page_name = "Commandes de base DNF";
+        var mkdocs_page_input_path = "linux/commandes-dnf.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -60,29 +60,29 @@
               </ul>
               <p class="caption"><span class="caption-text">Linux</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../commandes-dnf/">Commandes de base DNF</a>
-                  </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Comment créer un paquet DEB</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Commandes de base DNF</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#installation-des-outils-necessaires">Installation des outils nécessaires</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#sous-debian-et-derivees">Sous Debian et dérivées</a>
+    <li class="toctree-l2"><a class="reference internal" href="#installation-desinstallation">Installation / Désinstallation</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#sous-fedora-et-derivees">Sous Fedora et dérivées</a>
+    <li class="toctree-l2"><a class="reference internal" href="#mise-a-jour">Mise à jour</a>
     </li>
-        </ul>
+    <li class="toctree-l2"><a class="reference internal" href="#retrograder-la-version-dun-paquet">Rétrograder la version d'un paquet</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#mise-en-place-de-larborescence-de-construction">Mise en place de l'arborescence de construction</a>
+    <li class="toctree-l2"><a class="reference internal" href="#reinstallation-dun-paquet">Réinstallation d'un paquet</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#copie-des-fichiers">Copie des fichiers</a>
+    <li class="toctree-l2"><a class="reference internal" href="#recherche-dun-paquet">Recherche d'un paquet</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#creation-du-fichier-control">Création du fichier control</a>
+    <li class="toctree-l2"><a class="reference internal" href="#listage-des-paquets">Listage des paquets</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#ajout-dun-script-post-installation-facultatif">Ajout d'un script post-installation (Facultatif)</a>
+    <li class="toctree-l2"><a class="reference internal" href="#affichage-des-informations-dun-paquet">Affichage des informations d'un paquet</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#construction-du-paquet">Construction du paquet</a>
+    <li class="toctree-l2"><a class="reference internal" href="#afficher-lhistorique-des-transactions">Afficher l'historique des transactions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#modules-dnf">Modules DNF</a>
     </li>
     </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../creer-deb/">Comment créer un paquet DEB</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../creer-rpm/">Comment créer un paquet RPM</a>
                   </li>
@@ -113,7 +113,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
           <li>Linux &raquo;</li>
-      <li>Comment créer un paquet DEB</li>
+      <li>Commandes de base DNF</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -122,49 +122,117 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="comment-creer-un-paquet-deb">Comment créer un paquet DEB</h1>
-<p>DEB est le format de fichier des paquets logiciels de la distribution Debian GNU/Linux. Presque toutes les distributions basées sur Debian telles que Ubuntu et Linux Mint utilisent aussi ce format.</p>
-<p>Dans ce tutoriel, nous allons voir comment créer un paquet DEB.</p>
-<h2 id="installation-des-outils-necessaires">Installation des outils nécessaires</h2>
-<h3 id="sous-debian-et-derivees">Sous Debian et dérivées</h3>
-<pre><code>sudo apt-get install fakeroot
+                <h1 id="commandes-de-base-dnf">Commandes de base DNF</h1>
+<p>DNF est l'outil de gestion des paquets dans Fedora et dérivées depuis Fedora 22 et RHEL 8 (et dérivées).</p>
+<p><strong>NB :</strong> Toutes les commandes doivent être exécutées en tant que <code>root</code>.</p>
+<h2 id="installation-desinstallation">Installation / Désinstallation</h2>
+<ul>
+<li>Installation :</li>
+</ul>
+<pre><code>dnf install &lt;nom-paquet&gt;
 </code></pre>
-<h3 id="sous-fedora-et-derivees">Sous Fedora et dérivées</h3>
-<pre><code>sudo dnf install dpkg fakeroot
+<ul>
+<li>Désinstallation :</li>
+</ul>
+<pre><code>dnf remove &lt;nom-paquet&gt;
 </code></pre>
-<h2 id="mise-en-place-de-larborescence-de-construction">Mise en place de l'arborescence de construction</h2>
-<pre><code>mkdir -p &lt;package_name&gt;/DEBIAN
-mkdir -p &lt;package_name&gt;/usr/bin
+<ul>
+<li>Désinstallation avec dépendances inutilisées :</li>
+</ul>
+<pre><code>dnf autoremove &lt;nom-paquet&gt;
 </code></pre>
-<h2 id="copie-des-fichiers">Copie des fichiers</h2>
-<p>Mettez les binaires de votre paquet dans le dossier <code>&lt;package_name&gt;/usr/bin</code> (ou autre si nécessaire, selon l'emplacement ou ils seront installés)</p>
-<h2 id="creation-du-fichier-control">Création du fichier control</h2>
-<p><code>&lt;package_name&gt;/DEBIAN/control</code></p>
-<pre><code>Package: &lt;package_name&gt;
-Version: 1.0
-Maintainer: SpeedCode
-Architecture: all
-Description: package description 
+<h2 id="mise-a-jour">Mise à jour</h2>
+<ul>
+<li>Mise à jour d'un paquet :</li>
+</ul>
+<pre><code>dnf install &lt;nom-paquet&gt;
 </code></pre>
-<p>Pour plus d'options sur le fichier control : <a href="http://www.debian.org/doc/debian-policy/ch-controlfields.html#s-binarycontrolfiles">http://www.debian.org/doc/debian-policy/ch-controlfields.html#s-binarycontrolfiles</a> </p>
-<h2 id="ajout-dun-script-post-installation-facultatif">Ajout d'un script post-installation (Facultatif)</h2>
-<p><code>&lt;package_name&gt;/DEBIAN/postinst</code> (Assurez-vous qu'il est exécutable)</p>
-<pre><code>#!/usr/bin/bash
-# Mettez vos commandes à exécuter
+<ul>
+<li>Mise à jour de la distribution :</li>
+</ul>
+<pre><code>dnf remove &lt;nom-paquet&gt;
 </code></pre>
-<h2 id="construction-du-paquet">Construction du paquet</h2>
-<pre><code>cd &lt;package_name&gt;/..
-dpkg-deb --build &lt;package_name&gt;
+<ul>
+<li>Désinstallation avec dépendances inutilisées :</li>
+</ul>
+<pre><code>dnf autoremove &lt;nom-paquet&gt;
 </code></pre>
-<p>La commande va créer le fichier <package_name>.deb, pour l'installer, il suffit d'exécuter la commande suivante :</p>
-<pre><code>dpkg -i &lt;package_name&gt;.deb
+<ul>
+<li>Mise à jour de la distribution en excluant un paquet (vous pouvez en mettre plusieurs séparés par des virgules) :</li>
+</ul>
+<pre><code>dnf upgrade --exclude=&lt;nom-paquet&gt;
+</code></pre>
+<h2 id="retrograder-la-version-dun-paquet">Rétrograder la version d'un paquet</h2>
+<pre><code>dnf downgrade &lt;nom-paquet&gt;
+</code></pre>
+<h2 id="reinstallation-dun-paquet">Réinstallation d'un paquet</h2>
+<pre><code>dnf reinstall &lt;nom-paquet&gt;
+</code></pre>
+<h2 id="recherche-dun-paquet">Recherche d'un paquet</h2>
+<pre><code>dnf search &lt;recherche&gt;
+</code></pre>
+<h2 id="listage-des-paquets">Listage des paquets</h2>
+<ul>
+<li>Lister tous les paquets disponibles dans les dépôts :</li>
+</ul>
+<pre><code>dnf list
+</code></pre>
+<ul>
+<li>Lister tous les paquets installés sur la machine :</li>
+</ul>
+<pre><code>dnf list installed
+</code></pre>
+<h2 id="affichage-des-informations-dun-paquet">Affichage des informations d'un paquet</h2>
+<pre><code>dnf info &lt;nom-paquet&gt;
+</code></pre>
+<h2 id="afficher-lhistorique-des-transactions">Afficher l'historique des transactions</h2>
+<p>Affiche l'historique de toutes les commandes dnf exécutées depuis l'installation du système</p>
+<pre><code>dnf history
+</code></pre>
+<h2 id="modules-dnf">Modules DNF</h2>
+<ul>
+<li>Lister les modules :</li>
+</ul>
+<pre><code>dnf module list
+</code></pre>
+<ul>
+<li>Lister les versions d'un module en particulier :</li>
+</ul>
+<pre><code>dnf module list &lt;module&gt;
+</code></pre>
+<p><strong>Exemple pour nodejs :</strong></p>
+<pre><code>dnf module list nodejs
+</code></pre>
+<pre><code>Fedora Modular 36 - x86_64
+Name       Stream     Profiles                             Summary              
+nodejs     14         common [d], development, minimal     Javascript runtime   
+nodejs     16         common [d], development, minimal     Javascript runtime   
+
+Fedora Modular 36 - x86_64 - Updates
+Name       Stream     Profiles                             Summary              
+nodejs     14         common [d], development, minimal     Javascript runtime   
+nodejs     16         common [d], development, minimal     Javascript runtime   
+nodejs     18         common, development, minimal         Javascript runtime   
+
+Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled
+</code></pre>
+<ul>
+<li>Activation d'un module (ou changement de version):</li>
+</ul>
+<pre><code>dnf module disable nodejs
+dnf module enable nodejs:16
+</code></pre>
+<ul>
+<li>Installation à la volée d'une version d'un module:</li>
+</ul>
+<pre><code>dnf module install nodejs:16
 </code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../commandes-dnf/" class="btn btn-neutral float-left" title="Commandes de base DNF"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../creer-rpm/" class="btn btn-neutral float-right" title="Comment créer un paquet RPM">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../c%23/sha256/" class="btn btn-neutral float-left" title="Génération de SHA-256"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../creer-deb/" class="btn btn-neutral float-right" title="Comment créer un paquet DEB">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -187,10 +255,10 @@ dpkg-deb --build &lt;package_name&gt;
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../commandes-dnf/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../../c%23/sha256/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../creer-rpm/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../creer-deb/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
