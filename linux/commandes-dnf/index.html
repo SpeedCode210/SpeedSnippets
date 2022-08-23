@@ -60,6 +60,8 @@
               </ul>
               <p class="caption"><span class="caption-text">Linux</span></p>
               <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../commandes-apt/">Commandes de base APT</a>
+                  </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">Commandes de base DNF</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#installation-desinstallation">Installation / Désinstallation</a>
@@ -145,17 +147,12 @@
 <ul>
 <li>Mise à jour d'un paquet :</li>
 </ul>
-<pre><code>dnf install &lt;nom-paquet&gt;
+<pre><code>dnf upgrade &lt;nom-paquet&gt;
 </code></pre>
 <ul>
 <li>Mise à jour de la distribution :</li>
 </ul>
-<pre><code>dnf remove &lt;nom-paquet&gt;
-</code></pre>
-<ul>
-<li>Désinstallation avec dépendances inutilisées :</li>
-</ul>
-<pre><code>dnf autoremove &lt;nom-paquet&gt;
+<pre><code>dnf upgrade
 </code></pre>
 <ul>
 <li>Mise à jour de la distribution en excluant un paquet (vous pouvez en mettre plusieurs séparés par des virgules) :</li>
@@ -231,7 +228,7 @@ dnf module enable nodejs:16
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../../c%23/sha256/" class="btn btn-neutral float-left" title="Génération de SHA-256"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../commandes-apt/" class="btn btn-neutral float-left" title="Commandes de base APT"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../creer-deb/" class="btn btn-neutral float-right" title="Comment créer un paquet DEB">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -255,7 +252,7 @@ dnf module enable nodejs:16
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../../c%23/sha256/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../commandes-apt/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../creer-deb/" style="color: #fcfcfc">Next &raquo;</a></span>
