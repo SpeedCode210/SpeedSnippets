@@ -21,15 +21,11 @@ dnf autoremove <nom-paquet>
 ## Mise à jour
 - Mise à jour d'un paquet :
 ```
-dnf install <nom-paquet>
+dnf upgrade <nom-paquet>
 ```
 - Mise à jour de la distribution :
 ```
-dnf remove <nom-paquet>
-```
-- Désinstallation avec dépendances inutilisées :
-```
-dnf autoremove <nom-paquet>
+dnf upgrade
 ```
 - Mise à jour de la distribution en excluant un paquet (vous pouvez en mettre plusieurs séparés par des virgules) :
 ```
