@@ -9,7 +9,7 @@ using System.Reflection;
 
 ...
 
-static string ReadEmbeddedReource(string res){
+static string ReadEmbeddedResource(string res){
     var asm = Assembly.GetExecutingAssembly();
     using var stream = asm.GetManifestResourceStream(asm.GetName().Name+"."+res.Replace('/', '.'))!;
     using var reader = new StreamReader(stream);
@@ -37,6 +37,6 @@ TestProject.csproj
 Pour accéder au contenu des deux fichiers, rien de plus simple :
 
 ```cs
-string file1 = ReadEmbeddedReource("File1.txt");
-string file2 = ReadEmbeddedReource("Folder1/File2.txt");
+string file1 = ReadEmbeddedResource("File1.txt");
+string file2 = ReadEmbeddedResource("Folder1/File2.txt");
 ```
