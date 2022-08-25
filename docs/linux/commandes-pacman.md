@@ -41,10 +41,6 @@ pacman -Ss <recherche>
 ```
 
 ## Listage des paquets
-- Lister tous les paquets disponibles dans les dépôts :
-```
-apt list
-```
 - Lister tous les paquets installés sur la machine :
 ```
 pacman -Q
