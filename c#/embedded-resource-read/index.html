@@ -70,6 +70,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../linux/commandes-dnf/">Commandes de base DNF</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../linux/commandes-pacman/">Commandes de base Pacman</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../linux/creer-deb/">Comment créer un paquet DEB</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../linux/creer-rpm/">Comment créer un paquet RPM</a>
@@ -117,7 +119,7 @@
 
 ...
 
-static string ReadEmbeddedReource(string res){
+static string ReadEmbeddedResource(string res){
     var asm = Assembly.GetExecutingAssembly();
     using var stream = asm.GetManifestResourceStream(asm.GetName().Name+&quot;.&quot;+res.Replace('/', '.'))!;
     using var reader = new StreamReader(stream);
@@ -138,8 +140,8 @@ static string ReadEmbeddedReource(string res){
  |- Program.cs
 </code></pre>
 <p>Pour accéder au contenu des deux fichiers, rien de plus simple :</p>
-<pre><code class="language-cs">string file1 = ReadEmbeddedReource(&quot;File1.txt&quot;);
-string file2 = ReadEmbeddedReource(&quot;Folder1/File2.txt&quot;);
+<pre><code class="language-cs">string file1 = ReadEmbeddedResource(&quot;File1.txt&quot;);
+string file2 = ReadEmbeddedResource(&quot;Folder1/File2.txt&quot;);
 </code></pre>
               
             </div>
