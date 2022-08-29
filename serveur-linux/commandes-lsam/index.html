@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Utilisation de LSAM - SpeedCode Snippets</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Utilisation de LSAM";
+        var mkdocs_page_input_path = "serveur-linux/commandes-lsam.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/cs.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/js.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/cpp.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/json.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> SpeedCode Snippets
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Introduction</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">C#</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../c%23/embedded-resource-read/">Lecture d'une EmbeddedResource</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../c%23/ptero-egg-dotnet-6/">Egg Pterodactyl dotnet 6</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../c%23/sha256/">Génération de SHA-256</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../linux/commandes-apt/">Commandes de base APT</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../linux/commandes-dnf/">Commandes de base DNF</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../linux/commandes-pacman/">Commandes de base Pacman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../linux/creer-deb/">Comment créer un paquet DEB</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../linux/creer-rpm/">Comment créer un paquet RPM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../linux/installation-canon-lbp3010/">Installation de l'imprimante Canon LBP3010 sous Linux</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../linux/postinstall-fedora/">Post-installation de Fedora Workstation</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Serveur linux</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Utilisation de LSAM</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#ajout-dune-application">Ajout d'une application</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#affichage-dinformations">Affichage d'informations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#demarragearret-des-applications">Démarrage/Arrêt des applications</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#operations-de-gestion">Opérations de gestion</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#supprimer-une-application">Supprimer une application</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#gestion-des-sauvegardes">Gestion des sauvegardes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#importationexportation-dune-application">Importation/Exportation d'une application</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../reverse-nginx/">Comment faire un reverse proxy Nginx</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../xfce-serveur-almalinux/">Installer XFCE sur un serveur Almalinux</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">SpeedCode Snippets</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Serveur linux &raquo;</li>
+      <li>Utilisation de LSAM</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="utilisation-de-lsam">Utilisation de LSAM</h1>
+<p>LSAM est un utilitaire en ligne de commande permettant de gérer des applications serveur utilisant NodeJS, .NET, Go, Python et plein d'autres, et ce en créant et gérant automatiquement des services systemd.</p>
+<p>Pour l'installer, vous pouvez télécharger le paquet compatible avec votre distribution sur <a href="https://github.com/SpeedCode210/lsam/">GitHub</a> depuis la dernière release.</p>
+<p><strong>NB :</strong> Dans la version actuelle de LSAM, toutes les commandes doivent être exécutées en tant que  <code>root</code>.</p>
+<h2 id="ajout-dune-application">Ajout d'une application</h2>
+<p>1) Utilisez la commandes <code>lsam create</code> et suivez l'assistant, voici l'exemple pour une application Node.JS :</p>
+<pre><code class="language-n">[root@fedora-raouf ~]# lsam create
+N.B. Please install before launching the necessary runtimes/compilers for your app.
+Please enter application name : App1
+Please choose the type of the app : 
+1) .NET
+2) NodeJS
+3) Golang
+4) Java
+5) Python
+6) Lua
+7) Rust (Cargo)
+8) Custom command
+2
+Does your application need root permissions ? [y/N]n
+Please enter the file (command if custom command selected) to run with needed args. [index.js] app.js 
+Created symlink /etc/systemd/system/multi-user.target.wants/app1.service → /etc/systemd/system/app1.service.
+The application has been created, please go to the folder of the app with this command :
+'cd /home/lsam/applications/app1' to put in it the application's files
+Then start it using the command : 'lsam start app1'
+</code></pre>
+<p>2) Placez les fichiers de l'application via SFTP, Git, ou autre dans le dossier indiqué par LSAM (En l'occurence <code>/home/lsam/applications/app1</code>).</p>
+<p>3) Démarrez l'application via la commande <code>lsam start app1</code> en remplaçant <code>app1</code> par le nom de votre application.</p>
+<h2 id="affichage-dinformations">Affichage d'informations</h2>
+<ul>
+<li>Lister les applications sur la machine avec la commande <code>lsam list</code>:</li>
+</ul>
+<pre><code class="language-n">[root@fedora-raouf ~]# lsam list
+┌────────┬───────────┬───────────┬─────────────┬─────────────┐
+│  Name  │  Service  │  Status   │  Autostart  │  Root       │
+├────────┼───────────┼───────────┼─────────────┼─────────────┤
+│  App1  │  app1     │  Stopped  │  Yes        │  No         │
+└────────┴───────────┴───────────┴─────────────┴─────────────┘
+</code></pre>
+<ul>
+<li>Affichage des informations d'une application avec la commande <code>lsam info &lt;app&gt;</code>:</li>
+</ul>
+<pre><code class="language-n">[root@fedora-raouf ~]# lsam info app1
+┌───────────────┬────────────────────────────────┐
+│  Application  │  App1                          │
+├───────────────┼────────────────────────────────┤
+│  Service      │  app1.service                  │
+├───────────────┼────────────────────────────────┤
+│  Main file    │  app.js                        │
+├───────────────┼────────────────────────────────┤
+│  Type         │  NodeJS                        │
+├───────────────┼────────────────────────────────┤
+│  Directory    │  /home/lsam/applications/app1  │
+├───────────────┼────────────────────────────────┤
+│  Autostart    │  Yes                           │
+├───────────────┼────────────────────────────────┤
+│  Root         │  No                            │
+├───────────────┼────────────────────────────────┤
+│  Status       │  Stopped                       │
+└───────────────┴────────────────────────────────┘
+</code></pre>
+<h2 id="demarragearret-des-applications">Démarrage/Arrêt des applications</h2>
+<ul>
+<li>Démarrer une application :</li>
+</ul>
+<pre><code class="language-n">lsam start &lt;app&gt;
+</code></pre>
+<ul>
+<li>Redémarrer une application :</li>
+</ul>
+<pre><code class="language-n">lsam restart &lt;app&gt;
+</code></pre>
+<ul>
+<li>Arrêter une application :</li>
+</ul>
+<pre><code class="language-n">lsam stop &lt;app&gt;
+</code></pre>
+<ul>
+<li>Tuer le processus une application :</li>
+</ul>
+<pre><code class="language-n">lsam kill &lt;app&gt;
+</code></pre>
+<h2 id="operations-de-gestion">Opérations de gestion</h2>
+<ul>
+<li>Activer/Désactiver application au démarrage :</li>
+</ul>
+<pre><code class="language-n">lsam autostart on/off &lt;app&gt;
+</code></pre>
+<ul>
+<li>Activer/Désactiver les privilèges d'une application :</li>
+</ul>
+<pre><code class="language-n">lsam root on/off &lt;app&gt;
+</code></pre>
+<ul>
+<li>Renommer une application :</li>
+</ul>
+<pre><code class="language-n">lsam rename &lt;app&gt; &lt;nouveau-nom&gt;
+</code></pre>
+<ul>
+<li>Changer le fichier de démarrage d'une application :</li>
+</ul>
+<pre><code class="language-n">lsam mainfile &lt;app&gt; &lt;fichier&gt;
+</code></pre>
+<h2 id="supprimer-une-application">Supprimer une application</h2>
+<p>Il suffit d'exécuter la commande suivante et de confirmer avec 'y'</p>
+<pre><code class="language-n">lsam delete &lt;app&gt;
+</code></pre>
+<h2 id="gestion-des-sauvegardes">Gestion des sauvegardes</h2>
+<p><strong>Remarque :</strong> Les sauvegardes sont stockées dans le dossier <code>/home/lsam/backups</code></p>
+<ul>
+<li>Sauvegarder une application :</li>
+</ul>
+<pre><code class="language-n">lsam backup &lt;app&gt;
+</code></pre>
+<ul>
+<li>Sauvegarder toutes les applications :</li>
+</ul>
+<pre><code class="language-n">lsam backup-all
+</code></pre>
+<ul>
+<li>Lister toutes les sauvegardes du serveur :</li>
+</ul>
+<pre><code class="language-n">lsam list-backups
+</code></pre>
+<ul>
+<li>Lister toutes les sauvegardes d'une application :</li>
+</ul>
+<pre><code class="language-n">lsam list-backups &lt;app&gt;
+</code></pre>
+<ul>
+<li>Supprimer une sauvegarde :</li>
+</ul>
+<pre><code class="language-n">lsam delete-backup &lt;sauvegarde&gt;
+</code></pre>
+<ul>
+<li>Restaurer une sauvegarde :</li>
+</ul>
+<pre><code class="language-n">lsam restore-backup &lt;sauvegarde&gt;
+</code></pre>
+<h2 id="importationexportation-dune-application">Importation/Exportation d'une application</h2>
+<ul>
+<li>Exporter une application :</li>
+</ul>
+<pre><code class="language-n">lsam export &lt;application&gt;
+</code></pre>
+<ul>
+<li>Importer une application depuis un .tar.gz :</li>
+</ul>
+<pre><code class="language-n">lsam import &lt;archive&gt;
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../linux/postinstall-fedora/" class="btn btn-neutral float-left" title="Post-installation de Fedora Workstation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../reverse-nginx/" class="btn btn-neutral float-right" title="Comment faire un reverse proxy Nginx">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../linux/postinstall-fedora/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../reverse-nginx/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
